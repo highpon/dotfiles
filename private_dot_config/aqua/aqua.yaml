@@ -11,3 +11,4 @@ registries:
   ref: v4.285.0 # renovate: depName=aquaproj/aqua-registry
 packages:
 - name: neovim/neovim@v0.10.3
+- name: bitwarden/clients@cli-v2024.12.0
