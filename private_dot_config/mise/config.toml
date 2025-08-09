@@ -1,0 +1,10 @@
+[tools]
+"aqua:rossmacarthur/sheldon" = "latest"
+github-cli = "latest"
+go = "latest"
+jq = "latest"
+kind = "latest"
+krew = "latest"
+kubectl = "latest"
+node = "latest"
+rust = "latest"

@@ -31,3 +31,4 @@ zle -N fzf-select-history
 bindkey '^r' fzf-select-history
 
 alias k="kubectl"
+eval "$(mise activate zsh)"
