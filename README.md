@@ -43,7 +43,16 @@ chezmoi apply  # write the files
 
 Existing files such as `~/.zshrc` will be overwritten, so back them up first if needed.
 
-### 3. Tools are installed by mise
+### 3. OS packages
+
+`chezmoi apply` first installs the OS packages the dotfiles depend on:
+
+- Arch Linux: `packages/pacman.txt` (only missing packages, via `sudo pacman -S --needed`)
+- macOS: `packages/Brewfile` (via `brew bundle`; install [Homebrew](https://brew.sh) first)
+
+The script runs again whenever one of these lists changes.
+
+### 4. Tools are installed by mise
 
 The only tool you need to bootstrap is [mise](https://mise.jdx.dev/).
 On `chezmoi apply`, the `run_onchange_install-tools.sh` script installs mise
@@ -64,7 +73,7 @@ Pin exact versions (not `latest`) so that Renovate can open update PRs.
 Renovate groups minor/patch updates into one weekly PR and auto-merges it;
 major updates get their own PR. Run `chezmoi update` to pull and install them.
 
-### 4. AI coding tools
+### 5. AI coding tools
 
 - **Claude Code** and **OpenCode** are installed by mise (see step 3).
 - `~/.config/opencode/opencode.json` is managed as a normal file.
@@ -74,13 +83,26 @@ major updates get their own PR. Run `chezmoi update` to pull and install them.
 - Auto-update is disabled in both tools because mise and Renovate handle
   their versions.
 
-### 5. Ghostty and fonts
+### 6. Ghostty and fonts
 
 - `~/.config/ghostty/config.ghostty` sets the font to JetBrains Mono.
 - The font itself is downloaded by chezmoi from the official release
   (`.chezmoiexternal.toml.tmpl`) into `~/.local/share/fonts` on Linux and
   `~/Library/Fonts` on macOS. Its version is pinned and updated by Renovate.
 - On Linux, the font cache is refreshed after the font changes.
+
+### 7. Git commit signing
+
+Commits and tags are signed with the machine's SSH key (`~/.ssh/id_ed25519.pub`).
+If that key doesn't exist, signing is left off. To get the Verified badge on
+GitHub, register the key as a signing key:
+
+```sh
+gh auth refresh -h github.com -s admin:ssh_signing_key
+gh ssh-key add ~/.ssh/id_ed25519.pub --type signing --title "$(hostname)"
+```
+
+Global git ignores (e.g. `.DS_Store`) are in `~/.config/git/ignore`.
 
 ## Updating
 

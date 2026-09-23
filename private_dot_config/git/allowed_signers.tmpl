@@ -1,0 +1,4 @@
+{{- $signingKey := joinPath .chezmoi.homeDir ".ssh/id_ed25519.pub" -}}
+{{- if stat $signingKey -}}
+s.shiraki.business@gmail.com {{ include $signingKey | trim }}
+{{ end -}}

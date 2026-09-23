@@ -1,0 +1,18 @@
+# Arch Linux packages the dotfiles depend on (installed with pacman --needed).
+chezmoi
+curl
+git
+openssh
+unzip
+zsh
+
+# Terminal and fonts (Ghostty falls back to Noto Sans Mono CJK JP for Japanese)
+ghostty
+noto-fonts-cjk
+
+# Japanese input
+fcitx5
+fcitx5-configtool
+fcitx5-gtk
+fcitx5-mozc
+fcitx5-qt

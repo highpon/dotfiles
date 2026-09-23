@@ -1,0 +1,28 @@
+#!/bin/sh
+# Install OS packages listed in packages/. Re-runs when a list changes.
+# pacman.txt hash: {{ include "packages/pacman.txt" | sha256sum }}
+# Brewfile hash: {{ include "packages/Brewfile" | sha256sum }}
+set -eu
+
+{{ if eq .chezmoi.os "linux" -}}
+if ! command -v pacman >/dev/null 2>&1; then
+  echo "install-packages: pacman not found; install packages/pacman.txt manually" >&2
+  exit 0
+fi
+missing=$(pacman -T $(grep -vE '^\s*(#|$)' <<'PACKAGES'
+{{ include "packages/pacman.txt" }}
+PACKAGES
+) || true)
+if [ -n "$missing" ]; then
+  echo "install-packages: installing $(echo $missing)"
+  sudo pacman -S --needed --noconfirm $missing
+fi
+{{- else if eq .chezmoi.os "darwin" }}
+if ! command -v brew >/dev/null 2>&1; then
+  echo "install-packages: Homebrew is required: https://brew.sh" >&2
+  exit 1
+fi
+brew bundle --no-upgrade --file=- <<'BREWFILE'
+{{ include "packages/Brewfile" }}
+BREWFILE
+{{- end }}

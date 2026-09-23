@@ -1,0 +1,8 @@
+# macOS packages the dotfiles depend on (installed with brew bundle).
+brew "chezmoi"
+brew "git"
+
+# sheldon has no Intel Mac binary for mise to install.
+brew "sheldon" if Hardware::CPU.intel?
+
+cask "ghostty"
