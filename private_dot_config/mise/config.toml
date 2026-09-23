@@ -2,6 +2,7 @@
 [tools]
 "aqua:bitwarden/clients" = "2026.9.0"
 "aqua:rossmacarthur/sheldon" = "0.8.5"
+"github:stablyai/orca" = { version = "1.4.209", asset_pattern = "orca-linux.AppImage", bin = "orca" }
 fzf = "0.74.4"
 github-cli = "2.101.0"
 go = "1.27.1"
