@@ -10,6 +10,9 @@ zsh
 ghostty
 noto-fonts-cjk
 
+# Password manager (its desktop app is the SSH agent)
+bitwarden
+
 # Japanese input
 fcitx5
 fcitx5-configtool

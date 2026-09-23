@@ -1,10 +1,9 @@
 {{- $signingKey := joinPath .chezmoi.homeDir ".ssh/id_ed25519.pub" -}}
+{{- /* The private key lives in Bitwarden and is served by its SSH agent. */ -}}
 [user]
 	email = s.shiraki.business@gmail.com
 	name = HighPon
-{{- if stat $signingKey }}
 	signingkey = {{ $signingKey }}
-{{- end }}
 [alias]
 	s = status
 	co = checkout
@@ -18,10 +17,9 @@
 	ref = reflog
 	main = branch -M main
 	gr = log --oneline --graph
-{{- if stat $signingKey }}
 
-# Sign commits and tags with this machine's SSH key.
-# Register it on GitHub as a "Signing key" to get the Verified badge.
+# Sign commits and tags with the SSH key from Bitwarden.
+# It is registered on GitHub as a "Signing key" for the Verified badge.
 [gpg]
 	format = ssh
 [gpg "ssh"]
@@ -30,4 +28,3 @@
 	gpgsign = true
 [tag]
 	gpgsign = true
-{{- end }}

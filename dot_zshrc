@@ -5,6 +5,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Use the Bitwarden desktop app as the SSH agent (keys live in the vault).
+if [[ -S ~/.bitwarden-ssh-agent.sock ]]; then
+  export SSH_AUTH_SOCK=~/.bitwarden-ssh-agent.sock
+fi
+
 # mise must be activated before sheldon, since sheldon is installed by mise
 export PATH="$HOME/.local/bin:$PATH"
 eval "$(mise activate zsh)"

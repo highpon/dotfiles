@@ -91,16 +91,23 @@ major updates get their own PR. Run `chezmoi update` to pull and install them.
   `~/Library/Fonts` on macOS. Its version is pinned and updated by Renovate.
 - On Linux, the font cache is refreshed after the font changes.
 
-### 7. Git commit signing
+### 7. SSH key (Bitwarden) and commit signing
 
-Commits and tags are signed with the machine's SSH key (`~/.ssh/id_ed25519.pub`).
-If that key doesn't exist, signing is left off. To get the Verified badge on
-GitHub, register the key as a signing key:
+The SSH private key is stored only in Bitwarden. The Bitwarden desktop app's
+SSH agent serves it to ssh and git, so no private key file is kept in `~/.ssh`.
 
-```sh
-gh auth refresh -h github.com -s admin:ssh_signing_key
-gh ssh-key add ~/.ssh/id_ed25519.pub --type signing --title "$(hostname)"
-```
+On a new machine:
+
+1. Open the Bitwarden desktop app (installed from `packages/`), log in, and
+   enable **Settings → Enable SSH agent**.
+2. Open a new shell. `.zshrc` and `~/.ssh/config` use
+   `~/.bitwarden-ssh-agent.sock` whenever it exists.
+3. Check with `ssh-add -l` and `ssh -T git@github.com`.
+
+The public key is kept in this repo (`private_dot_ssh/id_ed25519.pub`).
+Commits and tags are signed with it; it is registered on GitHub as both an
+authentication key and a signing key. Bitwarden must be running and unlocked
+to push over SSH or to commit.
 
 Global git ignores (e.g. `.DS_Store`) are in `~/.config/git/ignore`.
 
