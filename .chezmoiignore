@@ -1,2 +1,5 @@
 README.md
 renovate.json
+{{ if ne .chezmoi.os "darwin" }}
+Library
+{{ end }}

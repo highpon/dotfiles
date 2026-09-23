@@ -1,0 +1,7 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/sh
+# Refresh the fontconfig cache when fonts in .chezmoiexternal change.
+# fonts hash: {{ include ".chezmoiexternal.toml.tmpl" | sha256sum }}
+set -eu
+fc-cache -f "$HOME/.local/share/fonts"
+{{ end -}}

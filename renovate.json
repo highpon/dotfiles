@@ -29,5 +29,18 @@
       ],
       "overrideDatasource": "github-releases"
     }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Versions pinned in chezmoi templates, marked with a renovate comment",
+      "managerFilePatterns": [
+        "/(^|/)\\.chezmoiexternal\\.toml\\.tmpl$/"
+      ],
+      "matchStrings": [
+        "renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)[^\\n]*\\n[^\\n]*:= \"(?<currentValue>[^\"]+)\""
+      ],
+      "extractVersionTemplate": "^v?(?<version>.*)$"
+    }
   ]
 }

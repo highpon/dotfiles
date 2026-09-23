@@ -1,0 +1,13 @@
+{{- $fontDir := ".local/share/fonts" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $fontDir = "Library/Fonts" -}}
+{{- end -}}
+{{- /* renovate: datasource=github-releases depName=JetBrains/JetBrainsMono */ -}}
+{{- $jetbrainsMonoVersion := "2.304" }}
+
+# JetBrains Mono font, used by Ghostty.
+["{{ $fontDir }}/JetBrainsMono"]
+type = "archive"
+url = "https://github.com/JetBrains/JetBrainsMono/releases/download/v{{ $jetbrainsMonoVersion }}/JetBrainsMono-{{ $jetbrainsMonoVersion }}.zip"
+stripComponents = 2
+include = ["fonts/ttf/*.ttf"]

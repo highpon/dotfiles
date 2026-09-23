@@ -74,6 +74,14 @@ major updates get their own PR. Run `chezmoi update` to pull and install them.
 - Auto-update is disabled in both tools because mise and Renovate handle
   their versions.
 
+### 5. Ghostty and fonts
+
+- `~/.config/ghostty/config.ghostty` sets the font to JetBrains Mono.
+- The font itself is downloaded by chezmoi from the official release
+  (`.chezmoiexternal.toml.tmpl`) into `~/.local/share/fonts` on Linux and
+  `~/Library/Fonts` on macOS. Its version is pinned and updated by Renovate.
+- On Linux, the font cache is refreshed after the font changes.
+
 ## Updating
 
 ```sh
