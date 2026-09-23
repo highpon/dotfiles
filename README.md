@@ -83,9 +83,11 @@ major updates get their own PR. Run `chezmoi update` to pull and install them.
   sets (`theme`, `env.DISABLE_AUTOUPDATER`) and leaves the rest as is.
 - Auto-update is disabled in both tools because mise and Renovate handle
   their versions.
-- **Antigravity CLI** (`agy`) is installed by mise. Its settings file
-  `~/.gemini/antigravity-cli/settings.json` is also written by the CLI
-  (`/config`), so `modify_settings.json` only merges the keys listed in it.
+- **Antigravity CLI** (`agy`) is installed by mise. The CLI (`/config`) and the
+  Antigravity 2.0 app share `~/.gemini/antigravity-cli/settings.json` and both
+  write to it, so `modify_private_settings.json` only merges the keys listed in it
+  (`colorScheme`, `model`). Conversations, logs, caches and project IDs under
+  `~/.gemini` are not managed.
 - **Antigravity 2.0** (desktop app) is installed from the AUR on Linux and as a
   Homebrew cask on macOS.
 
