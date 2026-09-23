@@ -50,7 +50,11 @@ The script runs again whenever that config changes.
 
 To add a tool, add it to `private_dot_config/mise/config.toml` and run
 `chezmoi apply`. Tools that mise has no short name for can use the aqua
-backend, e.g. `"aqua:rossmacarthur/sheldon" = "latest"`.
+backend, e.g. `"aqua:rossmacarthur/sheldon" = "0.8.5"`.
+
+Pin exact versions (not `latest`) so that Renovate can open update PRs.
+Renovate groups minor/patch updates into one weekly PR and auto-merges it;
+major updates get their own PR. Run `chezmoi update` to pull and install them.
 
 ## Updating
 
