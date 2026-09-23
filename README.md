@@ -64,6 +64,16 @@ Pin exact versions (not `latest`) so that Renovate can open update PRs.
 Renovate groups minor/patch updates into one weekly PR and auto-merges it;
 major updates get their own PR. Run `chezmoi update` to pull and install them.
 
+### 4. AI coding tools
+
+- **Claude Code** and **OpenCode** are installed by mise (see step 3).
+- `~/.config/opencode/opencode.json` is managed as a normal file.
+- `~/.claude/settings.json` is not overwritten. Other tools (e.g. Orca) write
+  hooks into it, so `dot_claude/modify_settings.json` only merges the keys it
+  sets (`theme`, `env.DISABLE_AUTOUPDATER`) and leaves the rest as is.
+- Auto-update is disabled in both tools because mise and Renovate handle
+  their versions.
+
 ## Updating
 
 ```sh

@@ -1,0 +1,13 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- /*
+  Merge the keys below into ~/.claude/settings.json, keeping everything else
+  (e.g. the hooks and statusLine that Orca writes) untouched.
+*/ -}}
+{{- $settings := dict -}}
+{{- if .chezmoi.stdin -}}
+{{-   $settings = fromJson .chezmoi.stdin -}}
+{{- end -}}
+{{- $settings = setValueAtPath "theme" "dark" $settings -}}
+{{- /* Claude Code is installed and updated by mise. */ -}}
+{{- $settings = setValueAtPath "env.DISABLE_AUTOUPDATER" "1" $settings -}}
+{{- toPrettyJson "  " $settings }}

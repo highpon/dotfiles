@@ -21,6 +21,13 @@
         "patch"
       ],
       "groupName": "mise tools"
+    },
+    {
+      "description": "opencode has v2 tags without releases; only follow published releases",
+      "matchDepNames": [
+        "aqua:anomalyco/opencode"
+      ],
+      "overrideDatasource": "github-releases"
     }
   ]
 }
