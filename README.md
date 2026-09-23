@@ -10,6 +10,9 @@ Personal dotfiles managed with [chezmoi](https://www.chezmoi.io/).
 # Arch Linux / CachyOS
 sudo pacman -S chezmoi
 
+# macOS
+brew install chezmoi
+
 # Other platforms
 sh -c "$(curl -fsLS get.chezmoi.io)"
 ```
@@ -47,6 +50,11 @@ On `chezmoi apply`, the `run_onchange_install-tools.sh` script installs mise
 into `~/.local/bin` if it is missing, then runs `mise install` for every tool in
 `~/.config/mise/config.toml` (neovim, sheldon, gh, fzf, bw, kubectl, node, ...).
 The script runs again whenever that config changes.
+
+The same config works on Linux and macOS (x64 and arm64). Tools that ship a
+different release file per platform, like Orca, set `asset_pattern` for each one under
+`[tools."github:<owner>/<repo>".platforms]`. sheldon has no Intel Mac binary,
+so on an Intel Mac it has to be installed separately (e.g. `brew install sheldon`).
 
 To add a tool, add it to `private_dot_config/mise/config.toml` and run
 `chezmoi apply`. Tools that mise has no short name for can use the aqua

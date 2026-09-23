@@ -2,7 +2,6 @@
 [tools]
 "aqua:bitwarden/clients" = "2026.9.0"
 "aqua:rossmacarthur/sheldon" = "0.8.5"
-"github:stablyai/orca" = { version = "1.4.209", asset_pattern = "orca-linux.AppImage", bin = "orca" }
 fzf = "0.74.4"
 github-cli = "2.101.0"
 go = "1.27.1"
@@ -13,3 +12,14 @@ kubectl = "1.37.0"
 neovim = "0.12.5"
 node = "26.10.0"
 rust = "1.98.1"
+
+# Orca desktop app (https://github.com/stablyai/orca).
+# Linux uses the AppImage; macOS uses the .app bundle from the zip.
+[tools."github:stablyai/orca"]
+version = "1.4.209"
+
+[tools."github:stablyai/orca".platforms]
+linux-x64 = { asset_pattern = "orca-linux.AppImage", bin = "orca" }
+linux-arm64 = { asset_pattern = "orca-linux-arm64.AppImage", bin = "orca" }
+macos-x64 = { asset_pattern = "Orca-{{ version }}-mac.zip", bin_path = "Orca.app/Contents/MacOS", filter_bins = ["Orca"] }
+macos-arm64 = { asset_pattern = "Orca-{{ version }}-arm64-mac.zip", bin_path = "Orca.app/Contents/MacOS", filter_bins = ["Orca"] }
