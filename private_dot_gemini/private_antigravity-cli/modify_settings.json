@@ -1,0 +1,13 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- /*
+  Merge the keys in $managed into ~/.gemini/antigravity-cli/settings.json.
+  The CLI also writes this file (via /config), so other keys are kept.
+  Keys: https://antigravity.google/docs/settings?tab=cli
+*/ -}}
+{{- $managed := dict -}}
+{{- $settings := dict -}}
+{{- if .chezmoi.stdin -}}
+{{-   $settings = fromJson .chezmoi.stdin -}}
+{{- end -}}
+{{- $settings = merge $managed $settings -}}
+{{- toPrettyJson "  " $settings }}

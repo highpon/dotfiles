@@ -7,5 +7,6 @@ brew "sheldon" if Hardware::CPU.intel?
 
 # Use the Homebrew cask, not the App Store build: the SSH agent socket
 # is then at ~/.bitwarden-ssh-agent.sock, the same path as on Linux.
+cask "antigravity"
 cask "bitwarden"
 cask "ghostty"

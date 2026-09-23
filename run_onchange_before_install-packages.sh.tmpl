@@ -1,6 +1,7 @@
 #!/bin/sh
 # Install OS packages listed in packages/. Re-runs when a list changes.
 # pacman.txt hash: {{ include "packages/pacman.txt" | sha256sum }}
+# aur.txt hash: {{ include "packages/aur.txt" | sha256sum }}
 # Brewfile hash: {{ include "packages/Brewfile" | sha256sum }}
 set -eu
 
@@ -16,6 +17,19 @@ PACKAGES
 if [ -n "$missing" ]; then
   echo "install-packages: installing $(echo $missing)"
   sudo pacman -S --needed --noconfirm $missing
+fi
+
+missing_aur=$(pacman -T $(grep -vE '^\s*(#|$)' <<'PACKAGES'
+{{ include "packages/aur.txt" }}
+PACKAGES
+) || true)
+if [ -n "$missing_aur" ]; then
+  if command -v paru >/dev/null 2>&1; then
+    echo "install-packages: installing from AUR: $(echo $missing_aur)"
+    paru -S --needed --noconfirm --skipreview $missing_aur
+  else
+    echo "install-packages: paru not found; install from AUR manually: $(echo $missing_aur)" >&2
+  fi
 fi
 {{- else if eq .chezmoi.os "darwin" }}
 if ! command -v brew >/dev/null 2>&1; then

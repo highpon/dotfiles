@@ -47,7 +47,8 @@ Existing files such as `~/.zshrc` will be overwritten, so back them up first if 
 
 `chezmoi apply` first installs the OS packages the dotfiles depend on:
 
-- Arch Linux: `packages/pacman.txt` (only missing packages, via `sudo pacman -S --needed`)
+- Arch Linux: `packages/pacman.txt` (only missing packages, via `sudo pacman -S --needed`),
+  then `packages/aur.txt` via [paru](https://github.com/Morganamilo/paru)
 - macOS: `packages/Brewfile` (via `brew bundle`; install [Homebrew](https://brew.sh) first)
 
 The script runs again whenever one of these lists changes.
@@ -82,6 +83,11 @@ major updates get their own PR. Run `chezmoi update` to pull and install them.
   sets (`theme`, `env.DISABLE_AUTOUPDATER`) and leaves the rest as is.
 - Auto-update is disabled in both tools because mise and Renovate handle
   their versions.
+- **Antigravity CLI** (`agy`) is installed by mise. Its settings file
+  `~/.gemini/antigravity-cli/settings.json` is also written by the CLI
+  (`/config`), so `modify_settings.json` only merges the keys listed in it.
+- **Antigravity 2.0** (desktop app) is installed from the AUR on Linux and as a
+  Homebrew cask on macOS.
 
 ### 6. Ghostty and fonts
 
