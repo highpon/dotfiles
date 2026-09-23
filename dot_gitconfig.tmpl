@@ -1,4 +1,4 @@
-{{- $signingKey := joinPath .chezmoi.homeDir ".ssh/id_ed25519.pub" -}}
+{{- $signingKey := joinPath .chezmoi.homeDir ".ssh/bitwarden_ed25519.pub" -}}
 {{- /* The private key lives in Bitwarden and is served by its SSH agent. */ -}}
 [user]
 	email = s.shiraki.business@gmail.com

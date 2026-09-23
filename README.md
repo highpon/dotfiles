@@ -104,9 +104,10 @@ On a new machine:
    `~/.bitwarden-ssh-agent.sock` whenever it exists.
 3. Check with `ssh-add -l` and `ssh -T git@github.com`.
 
-The public key is kept in this repo (`private_dot_ssh/id_ed25519.pub`).
-Commits and tags are signed with it; it is registered on GitHub as both an
-authentication key and a signing key. Bitwarden must be running and unlocked
+The key is the `github-signing-commit` SSH key item in Bitwarden. Its public
+key is kept in this repo (`private_dot_ssh/bitwarden_ed25519.pub`); ssh uses it
+for github.com, and commits and tags are signed with it. It is registered on
+GitHub as both an authentication key and a signing key. Bitwarden must be running and unlocked
 to push over SSH or to commit.
 
 Global git ignores (e.g. `.DS_Store`) are in `~/.config/git/ignore`.

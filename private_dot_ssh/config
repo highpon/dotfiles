@@ -1,3 +1,8 @@
 # Use the Bitwarden desktop app's SSH agent when it is running.
 Match exec "test -S ~/.bitwarden-ssh-agent.sock"
 	IdentityAgent ~/.bitwarden-ssh-agent.sock
+
+# GitHub: always use the key stored in Bitwarden.
+Host github.com
+	IdentityFile ~/.ssh/bitwarden_ed25519.pub
+	IdentitiesOnly yes
