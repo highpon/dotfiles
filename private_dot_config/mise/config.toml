@@ -1,11 +1,13 @@
 [tools]
 "aqua:bitwarden/clients" = "latest"
 "aqua:rossmacarthur/sheldon" = "latest"
+fzf = "latest"
 github-cli = "latest"
 go = "latest"
 jq = "latest"
 kind = "latest"
 krew = "latest"
 kubectl = "latest"
+neovim = "latest"
 node = "latest"
 rust = "latest"

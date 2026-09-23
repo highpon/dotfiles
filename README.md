@@ -40,11 +40,17 @@ chezmoi apply  # write the files
 
 Existing files such as `~/.zshrc` will be overwritten, so back them up first if needed.
 
-### 3. Install the tools the configs use
+### 3. Tools are installed by mise
 
-`.zshrc` expects [sheldon](https://github.com/rossmacarthur/sheldon),
-[mise](https://mise.jdx.dev/), and [fzf](https://github.com/junegunn/fzf)
-to be installed.
+The only tool you need to bootstrap is [mise](https://mise.jdx.dev/).
+On `chezmoi apply`, the `run_onchange_install-tools.sh` script installs mise
+into `~/.local/bin` if it is missing, then runs `mise install` for every tool in
+`~/.config/mise/config.toml` (neovim, sheldon, gh, fzf, bw, kubectl, node, ...).
+The script runs again whenever that config changes.
+
+To add a tool, add it to `private_dot_config/mise/config.toml` and run
+`chezmoi apply`. Tools that mise has no short name for can use the aqua
+backend, e.g. `"aqua:rossmacarthur/sheldon" = "latest"`.
 
 ## Updating
 

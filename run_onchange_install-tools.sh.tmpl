@@ -1,0 +1,12 @@
+#!/bin/sh
+# Install mise and every tool in ~/.config/mise/config.toml.
+# Re-runs whenever the mise config changes.
+# mise config hash: {{ include "private_dot_config/mise/config.toml" | sha256sum }}
+set -eu
+
+if ! command -v mise >/dev/null 2>&1 && [ ! -x "$HOME/.local/bin/mise" ]; then
+  curl -fsSL https://mise.run | sh
+fi
+export PATH="$HOME/.local/bin:$PATH"
+
+mise install --yes

@@ -5,6 +5,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# mise must be activated before sheldon, since sheldon is installed by mise
+export PATH="$HOME/.local/bin:$PATH"
+eval "$(mise activate zsh)"
+
 autoload -Uz compinit
 compinit
 
@@ -32,5 +36,3 @@ bindkey '^r' fzf-select-history
 
 alias k="kubectl"
 alias cc="claude --enable-auto-mode"
-eval "$(mise activate zsh)"
-

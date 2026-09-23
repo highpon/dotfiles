@@ -19,8 +19,6 @@ github = "romkatv/zsh-defer"
 
 [templates]
 defer = "{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}{{ hooks?.post | nl }}"
-fzf-install = "{{ dir }}/install --bin > /dev/null \n[[ ! $PATH =~ {{ dir }} ]] && export PATH=\"$PATH:{{ dir }}/bin\"\n"
-fzf-source = "{% for file in files %}source \"{{ file }}\"\n{% endfor %}"
 
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
@@ -47,7 +45,3 @@ github = "chriskempson/base16-shell"
 
 [plugins.powerlevel10k]
 github = "romkatv/powerlevel10k"
-
-[plugins.fzf]
-github = "junegunn/fzf"
-apply = ['fzf-install', 'fzf-source']
