@@ -4,6 +4,7 @@
 "aqua:anthropics/claude-code" = "2.1.280"
 "aqua:google-antigravity/antigravity-cli" = "1.2.9"
 "aqua:bitwarden/clients" = "2026.9.0"
+"aqua:modem-dev/hunk" = "0.22.0"
 "aqua:rossmacarthur/sheldon" = "0.8.5"
 fzf = "0.74.4"
 github-cli = "2.101.0"
