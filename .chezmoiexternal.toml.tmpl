@@ -11,3 +11,12 @@ type = "archive"
 url = "https://github.com/JetBrains/JetBrainsMono/releases/download/v{{ $jetbrainsMonoVersion }}/JetBrainsMono-{{ $jetbrainsMonoVersion }}.zip"
 stripComponents = 2
 include = ["fonts/ttf/*.ttf"]
+{{- if eq .chezmoi.os "linux" }}
+
+# Icon for the Antigravity desktop entry. The app tarball has none, so take the
+# one the AUR package uses, pinned to a commit.
+[".local/share/icons/antigravity.png"]
+type = "file"
+url = "https://aur.archlinux.org/cgit/aur.git/plain/antigravity.png?h=antigravity&id=b103891712f15ad946529a940f791ad72e6cad26"
+checksum.sha256 = "b27f0e4a6f14f491ba31bb24533a1f43c677362b12a0744a53fdd09d7c785317"
+{{- end }}

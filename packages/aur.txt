@@ -1,5 +1,2 @@
 # AUR packages (installed with paru --needed). These are third-party
 # PKGBUILDs; review them before adding new ones.
-
-# Google Antigravity 2.0 desktop app
-antigravity

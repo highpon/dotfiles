@@ -41,6 +41,26 @@
         "renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)[^\\n]*\\n[^\\n]*:= \"(?<currentValue>[^\"]+)\""
       ],
       "extractVersionTemplate": "^v?(?<version>.*)$"
+    },
+    {
+      "customType": "regex",
+      "description": "Antigravity desktop app installed by mise's http backend",
+      "managerFilePatterns": [
+        "/(^|/)private_dot_config/mise/config\\.toml$/"
+      ],
+      "matchStrings": [
+        "renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n\\[tools\\.\"http:[^\"]+\"\\]\\nversion = \"(?<currentValue>[^\"]+)\""
+      ],
+      "versioningTemplate": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<build>\\d+)$"
     }
-  ]
+  ],
+  "customDatasources": {
+    "antigravity": {
+      "defaultRegistryUrlTemplate": "https://antigravity-hub-auto-updater-974169037036.us-central1.run.app/manifest/latest-x64-linux.yml",
+      "format": "yaml",
+      "transformTemplates": [
+        "{ \"releases\": [{ \"version\": $match(files[0].url, /antigravity-hub\\/([0-9.]+-[0-9]+)\\//).groups[0] }] }"
+      ]
+    }
+  }
 }

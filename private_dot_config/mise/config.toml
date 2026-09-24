@@ -26,3 +26,20 @@ linux-x64 = { asset_pattern = "orca-linux.AppImage", bin = "orca" }
 linux-arm64 = { asset_pattern = "orca-linux-arm64.AppImage", bin = "orca" }
 macos-x64 = { asset_pattern = "Orca-{{ version }}-mac.zip", bin_path = "Orca.app/Contents/MacOS", filter_bins = ["Orca"] }
 macos-arm64 = { asset_pattern = "Orca-{{ version }}-arm64-mac.zip", bin_path = "Orca.app/Contents/MacOS", filter_bins = ["Orca"] }
+
+# Google Antigravity 2.0 desktop app (Linux only; macOS uses the Homebrew cask).
+# Not in the aqua registry, so it is downloaded from Google's bucket. The
+# version is "<version>-<build>" as used in the download path.
+# Nothing is put on PATH (bin_path points at a directory that does not exist):
+# `antigravity` is the CLI's binary, and the app's helper binaries must not
+# shadow anything. The app is started from its desktop entry.
+# renovate: datasource=custom.antigravity depName=antigravity
+[tools."http:antigravity"]
+version = "2.17.0-5217732355031040"
+os = ["linux"]
+strip_components = 1
+bin_path = "bin"
+
+[tools."http:antigravity".platforms]
+linux-x64 = { url = "https://storage.googleapis.com/antigravity-public/antigravity-hub/{{version}}/linux-x64/Antigravity.tar.gz" }
+linux-arm64 = { url = "https://storage.googleapis.com/antigravity-public/antigravity-hub/{{version}}/linux-arm/Antigravity.tar.gz" }

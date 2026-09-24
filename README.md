@@ -88,8 +88,11 @@ major updates get their own PR. Run `chezmoi update` to pull and install them.
   write to it, so `modify_private_settings.json` only merges the keys listed in it
   (`colorScheme`, `model`). Conversations, logs, caches and project IDs under
   `~/.gemini` are not managed.
-- **Antigravity 2.0** (desktop app) is installed from the AUR on Linux and as a
-  Homebrew cask on macOS.
+- **Antigravity 2.0** (desktop app) is installed by mise on Linux (`http`
+  backend, since it is not in the aqua registry) and as a Homebrew cask on
+  macOS. On Linux it is not put on PATH (`antigravity` is the CLI); launch it
+  from `~/.local/share/applications/antigravity.desktop`. Renovate follows the
+  app's update feed through a custom datasource.
 
 ### 6. Ghostty and fonts
 
