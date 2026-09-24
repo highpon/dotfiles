@@ -1,0 +1,13 @@
+# WSL only: expose the Windows Bitwarden SSH agent (named pipe
+# openssh-ssh-agent) as ~/.bitwarden-ssh-agent.sock, the path .zshrc and
+# ~/.ssh/config already use. Each connection starts one npiperelay.exe.
+[Unit]
+Description=Relay the Windows Bitwarden SSH agent into WSL
+
+[Socket]
+ListenStream=%h/.bitwarden-ssh-agent.sock
+SocketMode=0600
+Accept=yes
+
+[Install]
+WantedBy=sockets.target

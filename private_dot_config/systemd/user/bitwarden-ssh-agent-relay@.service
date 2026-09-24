@@ -1,0 +1,8 @@
+[Unit]
+Description=Relay one connection to the Windows Bitwarden SSH agent
+
+[Service]
+ExecStart=%h/.local/share/mise/installs/github-albertony-npiperelay/latest/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent
+StandardInput=socket
+StandardOutput=socket
+StandardError=journal

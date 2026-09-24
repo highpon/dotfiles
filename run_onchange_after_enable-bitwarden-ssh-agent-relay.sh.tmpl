@@ -1,0 +1,10 @@
+{{ if and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+#!/bin/sh
+# WSL only: enable the socket that relays the Windows Bitwarden SSH agent.
+# socket hash: {{ include "private_dot_config/systemd/user/bitwarden-ssh-agent-relay.socket" | sha256sum }}
+# service hash: {{ include "private_dot_config/systemd/user/bitwarden-ssh-agent-relay@.service" | sha256sum }}
+set -eu
+
+systemctl --user daemon-reload
+systemctl --user enable --now bitwarden-ssh-agent-relay.socket
+{{ end -}}

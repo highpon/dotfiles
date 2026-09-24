@@ -7,3 +7,6 @@ Library
 {{ if ne .chezmoi.os "linux" }}
 .local/share/applications/antigravity.desktop
 {{ end }}
+{{ if not (and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft")) }}
+.config/systemd/user/bitwarden-ssh-agent-relay*
+{{ end }}

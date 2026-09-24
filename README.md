@@ -115,6 +115,12 @@ On a new machine:
    `~/.bitwarden-ssh-agent.sock` whenever it exists.
 3. Check with `ssh-add -l` and `ssh -T git@github.com`.
 
+On WSL, use the **Windows** Bitwarden app instead (enable its SSH agent the
+same way). A systemd user socket (`bitwarden-ssh-agent-relay.socket`, enabled
+by a `run_onchange_` script) listens on `~/.bitwarden-ssh-agent.sock` and
+relays each connection to the Windows agent's named pipe with `npiperelay.exe`
+(installed by mise), so `.zshrc` and `~/.ssh/config` work unchanged.
+
 The key is the `github-signing-commit` SSH key item in Bitwarden. Its public
 key is kept in this repo (`private_dot_ssh/bitwarden_ed25519.pub`); ssh uses it
 for github.com, and commits and tags are signed with it. It is registered on
