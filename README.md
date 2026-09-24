@@ -86,8 +86,9 @@ major updates get their own PR. Run `chezmoi update` to pull and install them.
 - **Antigravity CLI** (`agy`) is installed by mise. The CLI (`/config`) and the
   Antigravity 2.0 app share `~/.gemini/antigravity-cli/settings.json` and both
   write to it, so `modify_private_settings.json` only merges the keys listed in it
-  (`colorScheme`, `model`). Conversations, logs, caches and project IDs under
-  `~/.gemini` are not managed.
+  (`colorScheme`, `model`, and `toolPermission` / `artifactReviewPolicy` set to
+  `always-proceed` so tool calls and artifacts are approved without prompting).
+  Conversations, logs, caches and project IDs under `~/.gemini` are not managed.
 - **Antigravity 2.0** (desktop app) is installed by mise on Linux (`http`
   backend, since it is not in the aqua registry) and as a Homebrew cask on
   macOS. On Linux it is not put on PATH (`antigravity` is the CLI); launch it

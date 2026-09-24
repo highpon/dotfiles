@@ -8,6 +8,8 @@
 {{- $managed := dict
       "colorScheme" "tokyo night"
       "model" "Gemini 3.8 Flash (High)"
+      "toolPermission" "always-proceed"
+      "artifactReviewPolicy" "always-proceed"
 -}}
 {{- $settings := dict -}}
 {{- if .chezmoi.stdin -}}
