@@ -94,6 +94,20 @@ major updates get their own PR. Run `chezmoi update` to pull and install them.
   macOS. On Linux it is not put on PATH (`antigravity` is the CLI); launch it
   from `~/.local/share/applications/antigravity.desktop`. Renovate follows the
   app's update feed through a custom datasource.
+- **APM (Agent Package Manager)** is installed by mise (`apm`).
+  AI agent skills are declared in `~/.apm/apm.yml` (`dot_apm/apm.yml`) and pinned in
+  `dot_apm/apm.lock.yaml`. On `chezmoi apply`, `run_onchange_after_install-skills.sh`
+  runs `apm install -g` to automatically deploy and sync skills across Claude Code
+  (`~/.claude/skills`), Antigravity (`~/.agents/skills`), and OpenCode
+  (`~/.config/opencode/skills`).
+  - **Default skills**:
+    - **Engineering discipline & workflow**: `obra/superpowers` (structured SDLC methodology: brainstorming, writing-plans, executing-plans, TDD, systematic-debugging, subagents, and verification-before-completion across 15 skills + SessionStart hook), `grill-with-docs` (interactive requirement drilling & ADR generation), `diagnosing-bugs` (systematic root cause analysis & regression tests), and `tdd` (enforced Red-Green-Refactor cycles).
+    - **Language & code quality**: `use-modern-go` (version-specific modern Go idioms via JetBrains CLI), `review-and-refactor` (code smell inspection & refactoring), `frontend-design` (UI & a11y patterns), `webapp-testing` (web & unit test authoring).
+    - **Documentation & meta**: `doc-coauthoring` (collaborative drafting of specs, postmortems & guides), `pdf` (PDF document processing), `skill-creator` (custom skill creation & eval), `mcp-builder` (custom MCP server implementation).
+  - **Adding / updating skills**: Add packages to `dot_apm/apm.yml` or run
+    `apm install -g <package>` in your terminal, sync changes back to `dot_apm/`
+    (or re-run `apm lock`), and run `chezmoi apply`. To refresh pinned versions,
+    run `apm update -g` and update `dot_apm/apm.lock.yaml`.
 
 ### 6. Ghostty and fonts
 

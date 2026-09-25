@@ -1,0 +1,12 @@
+#!/bin/sh
+# Install and sync global AI agent skills via apm.
+# Re-runs whenever the apm manifest or lockfile changes.
+# apm.yml hash: {{ include "dot_apm/apm.yml" | sha256sum }}
+# apm.lock.yaml hash: {{ include "dot_apm/apm.lock.yaml" | sha256sum }}
+set -eu
+
+export PATH="$HOME/.local/share/mise/shims:$HOME/.local/bin:$PATH"
+
+if command -v apm >/dev/null 2>&1; then
+  apm install -g
+fi

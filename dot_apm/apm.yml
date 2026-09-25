@@ -1,0 +1,41 @@
+name: user-skills
+version: 1.0.0
+description: Global AI agent skills managed via dotfiles and APM
+targets:
+  - claude
+  - gemini
+  - opencode
+dependencies:
+  apm:
+    # ── エンジニアリング規律 & ワークフロー (Superpowers) ──
+    # ソフトウェア開発ライフサイクル総合フレームワーク (計画、TDD、体系的デバッグ、完了前検証など15スキル + SessionStartフック)
+    - obra/superpowers
+    # 要件定義・仕様合意 (質問攻めによる曖昧さ排除＋ADR/CONTEXT.md自動生成)
+    - mattpocock/skills/skills/engineering/grill-with-docs
+    # 体系的バグ調査 (再現→最小化→仮説→計装→修正→回帰テスト)
+    - mattpocock/skills/skills/engineering/diagnosing-bugs
+    # TDD サイクル強制 (Red→Green→Refactor の反復)
+    - mattpocock/skills/skills/engineering/tdd
+
+    # ── 言語・コード品質・リファクタリング ──
+    # Go 言語モダンガイドライン (Go バージョンに応じた最新の記法・イディオム適用)
+    - JetBrains/go-modern-guidelines/plugin/skills/use-modern-go
+    # コードレビュー・リファクタリング (コードスメル検知、段階的リファクタリング)
+    - github/awesome-copilot/skills/review-and-refactor
+    # フロントエンド設計 (UI/コンポーネント設計、アクセシビリティ対応)
+    - anthropics/skills/skills/frontend-design
+    # テスト・品質向上 (Playwright / ユニットテスト等の作成・検証)
+    - anthropics/skills/skills/webapp-testing
+
+    # ── ドキュメント・仕様策定 ──
+    # 設計書・仕様書・障害報告書の協働作成 (文脈収集→推敲→読み手テスト)
+    - anthropics/skills/skills/doc-coauthoring
+    # ドキュメント操作 (PDFの解析・要約・生成)
+    - anthropics/skills/skills/pdf
+
+    # ── メタ・開発支援 ──
+    # カスタムスキル作成支援 (社内規約や独自ツールのスキル化)
+    - anthropics/skills/skills/skill-creator
+    # MCPサーバー構築支援 (社内ツールやAPI連携)
+    - anthropics/skills/skills/mcp-builder
+mcp: []
