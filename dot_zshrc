@@ -40,4 +40,5 @@ zle -N fzf-select-history
 bindkey '^r' fzf-select-history
 
 alias k="kubectl"
+(( $+commands[kubectl] )) && source <(kubectl completion zsh)
 alias cc="claude --enable-auto-mode"
