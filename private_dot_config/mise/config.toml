@@ -1,19 +1,19 @@
 # Versions are pinned so Renovate can open update PRs.
 [tools]
 "aqua:anomalyco/opencode" = "1.18.32"
-"aqua:anthropics/claude-code" = "2.1.280"
-"aqua:google-antigravity/antigravity-cli" = "1.2.9"
+"aqua:anthropics/claude-code" = "2.1.283"
+"aqua:google-antigravity/antigravity-cli" = "1.2.12"
 "aqua:bitwarden/clients" = "2026.9.0"
 "aqua:modem-dev/hunk" = "0.22.0"
 "aqua:rossmacarthur/sheldon" = "0.8.5"
-apm = "0.31.0"
+apm = "0.32.0"
 fzf = "0.74.4"
 github-cli = "2.101.0"
 go = "1.27.1"
 jq = "1.8.2"
 kind = "0.33.0"
 krew = "0.5.0"
-kubectl = "1.37.0"
+kubectl = "1.37.1"
 neovim = "0.12.5"
 node = "26.10.0"
 rust = "1.98.1"
@@ -21,7 +21,7 @@ rust = "1.98.1"
 # Orca desktop app (https://github.com/stablyai/orca).
 # Linux uses the AppImage; macOS uses the .app bundle from the zip.
 [tools."github:stablyai/orca"]
-version = "1.4.209"
+version = "1.4.215"
 
 [tools."github:stablyai/orca".platforms]
 linux-x64 = { asset_pattern = "orca-linux.AppImage", bin = "orca" }
