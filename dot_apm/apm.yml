@@ -7,6 +7,10 @@ targets:
   - opencode
 dependencies:
   apm:
+    # ── 独自スキル (Custom Skills) ──
+    # レビューゲート付き開発ワークフロー (計画・設計・実装・完了前の各段階で人間の承認を挟む規律)
+    - path: ./skills/review-gated-workflow
+
     # ── エンジニアリング規律 & ワークフロー (Superpowers) ──
     # ソフトウェア開発ライフサイクル総合フレームワーク (計画、TDD、体系的デバッグ、完了前検証など15スキル + SessionStartフック)
     - obra/superpowers

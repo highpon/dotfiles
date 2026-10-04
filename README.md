@@ -88,6 +88,8 @@ major updates get their own PR. Run `chezmoi update` to pull and install them.
   write to it, so `modify_private_settings.json` only merges the keys listed in it
   (`colorScheme`, `model`, and `toolPermission` / `artifactReviewPolicy` set to
   `always-proceed` so tool calls and artifacts are approved without prompting).
+  Global skills deployed to `~/.agents/skills` are loaded via `~/.gemini/config/skills.json`
+  (`private_dot_gemini/config/skills.json.tmpl`).
   Conversations, logs, caches and project IDs under `~/.gemini` are not managed.
 - **Antigravity 2.0** (desktop app) is installed by mise on Linux (`http`
   backend, since it is not in the aqua registry) and as a Homebrew cask on
@@ -101,13 +103,13 @@ major updates get their own PR. Run `chezmoi update` to pull and install them.
   (`~/.claude/skills`), Antigravity (`~/.agents/skills`), and OpenCode
   (`~/.config/opencode/skills`).
   - **Default skills**:
-    - **Engineering discipline & workflow**: `obra/superpowers` (structured SDLC methodology: brainstorming, writing-plans, executing-plans, TDD, systematic-debugging, subagents, and verification-before-completion across 15 skills + SessionStart hook), `grill-with-docs` (interactive requirement drilling & ADR generation), `diagnosing-bugs` (systematic root cause analysis & regression tests), and `tdd` (enforced Red-Green-Refactor cycles).
+    - **Engineering discipline & workflow**: `review-gated-workflow` (custom skill: disciplined development with 4 explicit human review gates for plan, architecture, implementation, and pre-completion), `obra/superpowers` (structured SDLC methodology: brainstorming, writing-plans, executing-plans, TDD, systematic-debugging, subagents, and verification-before-completion across 15 skills + SessionStart hook), `grill-with-docs` (interactive requirement drilling & ADR generation), `diagnosing-bugs` (systematic root cause analysis & regression tests), and `tdd` (enforced Red-Green-Refactor cycles).
     - **Language & code quality**: `use-modern-go` (version-specific modern Go idioms via JetBrains CLI), `review-and-refactor` (code smell inspection & refactoring), `frontend-design` (UI & a11y patterns), `webapp-testing` (web & unit test authoring).
     - **Documentation & meta**: `doc-coauthoring` (collaborative drafting of specs, postmortems & guides), `pdf` (PDF document processing), `skill-creator` (custom skill creation & eval), `mcp-builder` (custom MCP server implementation).
-  - **Adding / updating skills**: Add packages to `dot_apm/apm.yml` or run
-    `apm install -g <package>` in your terminal, sync changes back to `dot_apm/`
-    (or re-run `apm lock`), and run `chezmoi apply`. To refresh pinned versions,
-    run `apm update -g` and update `dot_apm/apm.lock.yaml`.
+  - **Adding / updating skills**: Add packages or local custom skills under `dot_apm/skills/`
+    to `dot_apm/apm.yml` (e.g. `- path: ./skills/<name>`) or run `apm install -g <package>`
+    in your terminal, sync changes back to `dot_apm/` (or re-run `apm lock`), and run `chezmoi apply`.
+    To refresh pinned versions, run `apm update -g` and update `dot_apm/apm.lock.yaml`.
 
 ### 6. Ghostty and fonts
 
