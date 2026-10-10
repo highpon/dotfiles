@@ -53,6 +53,10 @@ Existing files such as `~/.zshrc` will be overwritten, so back them up first if 
 
 The script runs again whenever one of these lists changes.
 
+After that, `run_once_after_set-login-shell.sh` makes zsh the login shell with
+`chsh` (it asks for your password). Only `.zshrc` activates mise, so the tools
+below are not on PATH in other shells. Log out and back in once it has run.
+
 ### 4. Tools are installed by mise
 
 The only tool you need to bootstrap is [mise](https://mise.jdx.dev/).
