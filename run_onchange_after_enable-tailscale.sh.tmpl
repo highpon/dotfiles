@@ -1,0 +1,61 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/sh
+# Setup tailscaled systemd service for Tailscale installed via mise.
+# Re-runs whenever mise config changes.
+# mise config hash: {{ include "private_dot_config/mise/config.toml" | sha256sum }}
+set -eu
+
+export PATH="$HOME/.local/share/mise/shims:$HOME/.local/bin:$PATH"
+
+if ! command -v mise >/dev/null 2>&1; then
+  exit 0
+fi
+
+TAILSCALE_BIN="$(mise which tailscale 2>/dev/null || true)"
+TAILSCALED_BIN="$(mise which tailscaled 2>/dev/null || true)"
+
+if [ -z "$TAILSCALE_BIN" ] || [ -z "$TAILSCALED_BIN" ]; then
+  exit 0
+fi
+
+# Only proceed if systemd is running
+if [ ! -d /run/systemd/system ]; then
+  echo "tailscaled: systemd is not running; skipping service setup" >&2
+  exit 0
+fi
+
+echo "tailscaled: linking binaries to /usr/local/bin"
+sudo ln -sf "$TAILSCALE_BIN" /usr/local/bin/tailscale
+sudo ln -sf "$TAILSCALED_BIN" /usr/local/bin/tailscaled
+
+echo "tailscaled: installing /etc/systemd/system/tailscaled.service"
+sudo tee /etc/systemd/system/tailscaled.service > /dev/null << 'EOF'
+[Unit]
+Description=Tailscale node agent
+Documentation=https://tailscale.com/docs/
+Wants=network-pre.target
+After=network-pre.target NetworkManager.service systemd-resolved.service
+
+[Service]
+EnvironmentFile=-/etc/default/tailscaled
+Environment="PORT=41641"
+Environment="FLAGS="
+ExecStart=/usr/local/bin/tailscaled --state=/var/lib/tailscale/tailscaled.state --socket=/run/tailscale/tailscaled.sock --port=${PORT} $FLAGS
+ExecStopPost=/usr/local/bin/tailscaled --cleanup
+Restart=on-failure
+RuntimeDirectory=tailscale
+RuntimeDirectoryMode=0755
+StateDirectory=tailscale
+StateDirectoryMode=0700
+CacheDirectory=tailscale
+CacheDirectoryMode=0750
+Type=notify
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+echo "tailscaled: enabling and starting tailscaled service"
+sudo systemctl daemon-reload
+sudo systemctl enable --now tailscaled
+{{ end -}}

@@ -1,0 +1,70 @@
+# Check that every pinned tool and external file can actually be downloaded,
+# so a version bump that points at a missing release fails before it is merged.
+name: Check downloads
+
+on:
+  pull_request:
+    paths:
+      - private_dot_config/mise/config.toml
+      - .chezmoiexternal.toml.tmpl
+      - renovate.json
+      - .github/workflows/check-downloads.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mise:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Put the mise config where chezmoi applies it
+        run: |
+          mkdir -p ~/.config/mise
+          cp private_dot_config/mise/config.toml ~/.config/mise/config.toml
+
+      - uses: jdx/mise-action@v5
+        with:
+          install: false
+          # A cache hit would skip the downloads this job is meant to check.
+          cache: false
+
+      - name: Install every tool
+        run: mise install --yes
+
+  externals:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: jdx/mise-action@v5
+        with:
+          install: false
+          cache: false
+
+      - name: Fetch every URL in .chezmoiexternal.toml
+        run: |
+          urls=$(mise exec chezmoi@latest -- chezmoi execute-template --source "$PWD" < .chezmoiexternal.toml.tmpl |
+            sed -n 's/^url = "\(.*\)"$/\1/p')
+          status=0
+          for url in $urls; do
+            if curl -fsSL --retry 3 -o /dev/null "$url"; then
+              echo "ok      $url"
+            else
+              echo "::error::failed to download $url"
+              status=1
+            fi
+          done
+          exit $status
