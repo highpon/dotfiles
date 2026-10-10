@@ -10,7 +10,7 @@
     "before 9am on monday"
   ],
   "timezone": "Asia/Tokyo",
-  "ignoreTests": true,
+  "ignoreTests": false,
   "packageRules": [
     {
       "matchManagers": [
@@ -26,6 +26,14 @@
       "description": "opencode has v2 tags without releases; only follow published releases",
       "matchDepNames": [
         "aqua:anomalyco/opencode"
+      ],
+      "overrideDatasource": "github-releases"
+    },
+    {
+      "description": "ghcup has a stray v0.21 tag and tailscale tags releases before publishing builds; only follow published releases",
+      "matchDepNames": [
+        "aqua:haskell/ghcup-hs",
+        "aqua:tailscale/tailscale"
       ],
       "overrideDatasource": "github-releases"
     }
