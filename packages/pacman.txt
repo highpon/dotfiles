@@ -19,3 +19,6 @@ fcitx5-configtool
 fcitx5-gtk
 fcitx5-mozc
 fcitx5-qt
+
+# Editors (VS Code is in aur.txt)
+zed

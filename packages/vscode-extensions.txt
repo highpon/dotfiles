@@ -1,0 +1,4 @@
+# VS Code extensions (installed with `code --install-extension`).
+anthropic.claude-code
+github.copilot-chat
+vscodevim.vim

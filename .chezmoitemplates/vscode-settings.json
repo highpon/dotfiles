@@ -1,0 +1,18 @@
+// VS Code user settings, shared by Linux (~/.config/Code/User) and macOS
+// (~/Library/Application Support/Code/User). Kept in line with Zed's settings.
+{
+    "editor.fontFamily": "'JetBrains Mono', 'Noto Sans Mono CJK JP', monospace",
+    "editor.fontSize": 15,
+    "editor.inlineSuggest.enabled": true,
+    "window.zoomLevel": 0,
+    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.preferredDarkColorTheme": "Default Dark Modern",
+    "workbench.preferredLightColorTheme": "Default Light Modern",
+    "security.workspace.trust.enabled": false,
+    "terminal.integrated.fontFamily": "'JetBrains Mono', 'Noto Sans Mono CJK JP'",
+    "terminal.integrated.lineHeight": 1.5,
+    "terminal.integrated.copyOnSelection": true,
+    "terminal.integrated.cwd": "${workspaceFolder}",
+    "update.mode": "none",
+    "extensions.autoUpdate": true
+}

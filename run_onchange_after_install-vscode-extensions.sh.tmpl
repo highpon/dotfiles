@@ -1,0 +1,15 @@
+#!/bin/sh
+# Install the VS Code extensions in packages/vscode-extensions.txt.
+# Re-runs when the list changes. Extensions not in the list are left alone.
+# vscode-extensions.txt hash: {{ include "packages/vscode-extensions.txt" | sha256sum }}
+set -eu
+
+if ! command -v code >/dev/null 2>&1; then
+  echo "install-vscode-extensions: code not found; skipping" >&2
+  exit 0
+fi
+grep -vE '^\s*(#|$)' <<'EXTENSIONS' | while read -r ext; do
+{{ include "packages/vscode-extensions.txt" }}
+EXTENSIONS
+  code --install-extension "$ext"
+done
