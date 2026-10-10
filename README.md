@@ -117,7 +117,23 @@ major updates get their own PR. Run `chezmoi update` to pull and install them.
   `~/Library/Fonts` on macOS. Its version is pinned and updated by Renovate.
 - On Linux, the font cache is refreshed after the font changes.
 
-### 7. SSH key (Bitwarden) and commit signing
+### 7. Editors (VS Code, Zed)
+
+- **Zed** is installed from `packages/` (`zed` from pacman on Arch, the `zed`
+  cask on macOS; the Linux binary is `zeditor`). Its settings are in
+  `~/.config/zed/settings.json` on both OSes.
+- **VS Code** is installed from `packages/`: `visual-studio-code-bin` from the
+  AUR on Arch (the Microsoft build, so the official extension marketplace
+  works) and the `visual-studio-code` cask on macOS.
+- VS Code's `settings.json` lives in `~/.config/Code/User` on Linux and
+  `~/Library/Application Support/Code/User` on macOS. Both are rendered from one
+  shared template, `.chezmoitemplates/vscode-settings.json`; edit that file.
+- Extensions are listed in `packages/vscode-extensions.txt`.
+  `run_onchange_after_install-vscode-extensions.sh` installs them with
+  `code --install-extension` whenever the list changes. Extensions removed from
+  the list are not uninstalled.
+
+### 8. SSH key (Bitwarden) and commit signing
 
 The SSH private key is stored only in Bitwarden. The Bitwarden desktop app's
 SSH agent serves it to ssh and git, so no private key file is kept in `~/.ssh`.

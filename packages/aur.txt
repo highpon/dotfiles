@@ -1,2 +1,6 @@
 # AUR packages (installed with paru --needed). These are third-party
 # PKGBUILDs; review them before adding new ones.
+
+# Visual Studio Code (Microsoft build, so the official extension marketplace
+# works; the `code` package in extra is Code - OSS with Open VSX).
+visual-studio-code-bin

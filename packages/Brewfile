@@ -10,3 +10,5 @@ brew "sheldon" if Hardware::CPU.intel?
 cask "antigravity"
 cask "bitwarden"
 cask "ghostty"
+cask "visual-studio-code"
+cask "zed"

@@ -5,6 +5,7 @@ packages
 Library
 {{ end }}
 {{ if ne .chezmoi.os "linux" }}
+.config/Code
 .local/share/applications/antigravity.desktop
 {{ end }}
 {{ if not (and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft")) }}
