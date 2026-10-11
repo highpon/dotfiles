@@ -4,3 +4,7 @@
 # Visual Studio Code (Microsoft build, so the official extension marketplace
 # works; the `code` package in extra is Code - OSS with Open VSX).
 visual-studio-code-bin
+
+# F5 BIG-IP APM VPN client (repackages the official .deb from
+# vpn.f5networks.net). Arch Linux only; not installed on macOS.
+f5vpn-ng
