@@ -1,0 +1,35 @@
+#!/bin/sh
+# Make zsh the login shell. Only .zshrc activates mise, so in any other shell
+# the tools it installs (claude, antigravity, ...) are not on PATH.
+# Runs after install-packages, which installs zsh.
+set -eu
+
+# Prefer a zsh already listed in /etc/shells: on Arch, PATH may resolve zsh to
+# /usr/sbin/zsh, which is not listed there.
+zsh_path=$(grep -E '/zsh$' /etc/shells 2>/dev/null | while read -r p; do
+  [ -x "$p" ] && echo "$p" && break
+done || true)
+[ -n "$zsh_path" ] || zsh_path=$(command -v zsh || true)
+if [ -z "$zsh_path" ]; then
+  echo "set-login-shell: zsh not found; install it and run chezmoi apply again" >&2
+  exit 1
+fi
+
+{{ if eq .chezmoi.os "darwin" -}}
+current=$(dscl . -read "/Users/$USER" UserShell | awk '{print $2}')
+{{- else -}}
+current=$(getent passwd "$USER" | cut -d: -f7)
+{{- end }}
+if [ "$(basename "$current")" = zsh ]; then
+  exit 0
+fi
+
+# chsh only accepts shells listed in /etc/shells (e.g. Homebrew's zsh is not).
+if ! grep -qx "$zsh_path" /etc/shells; then
+  echo "set-login-shell: adding $zsh_path to /etc/shells"
+  echo "$zsh_path" | sudo tee -a /etc/shells >/dev/null
+fi
+
+echo "set-login-shell: changing login shell from $current to $zsh_path"
+chsh -s "$zsh_path"
+echo "set-login-shell: log out and back in for it to take effect"
