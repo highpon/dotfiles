@@ -38,4 +38,7 @@ dependencies:
     - anthropics/skills/skills/skill-creator
     # MCPサーバー構築支援 (社内ツールやAPI連携)
     - anthropics/skills/skills/mcp-builder
+  mcp:
+    # ブラウザ自動操作 (アクセシビリティツリー経由のE2Eテスト・画面確認・データ取得)
+    - microsoft/playwright-mcp
 mcp: []

@@ -4012,6 +4012,24 @@ deployments:
   - obra/superpowers
   active_owner: obra/superpowers
   content_hash: sha256:5e92229e49d7cff5e0355ab84b0bceb0d27d53c565b33210132ce6e413ee9665
+- kind: uri
+  target: mcp
+  value: microsoft/playwright-mcp
+  runtime: claude
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+- kind: uri
+  target: mcp
+  value: microsoft/playwright-mcp
+  runtime: gemini
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
 - kind: project-relative
   target: opencode
   value: .config/opencode/skills/brainstorming
@@ -5479,3 +5497,13 @@ deployments:
   - obra/superpowers
   active_owner: obra/superpowers
   content_hash: sha256:c711346852c911b24a84aa161e0cff06a4cd7f4e2fa9e9c0a266cead5afcbade
+mcp_servers:
+- microsoft/playwright-mcp
+mcp_configs:
+  microsoft/playwright-mcp:
+    name: microsoft/playwright-mcp
+mcp_target_servers:
+  claude:
+  - microsoft/playwright-mcp
+  gemini:
+  - microsoft/playwright-mcp
