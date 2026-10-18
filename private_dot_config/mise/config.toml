@@ -1,10 +1,10 @@
 # Versions are pinned so Renovate can open update PRs.
 [tools]
-"aqua:anomalyco/opencode" = "1.19.0"
-"aqua:anthropics/claude-code" = "2.1.296"
+"aqua:anomalyco/opencode" = "1.19.3"
+"aqua:anthropics/claude-code" = "2.1.302"
 "aqua:commercialhaskell/stack" = "3.11.1"
 "aqua:d2lang/d2" = "0.9.0"
-"aqua:google-antigravity/antigravity-cli" = "1.3.3"
+"aqua:google-antigravity/antigravity-cli" = "1.4.2"
 "aqua:haskell/ghcup-hs" = "0.2.6.2"
 "aqua:bitwarden/clients" = "2026.9.0"
 "aqua:modem-dev/hunk" = "0.23.0"
@@ -19,14 +19,14 @@ kind = "0.33.0"
 krew = "0.5.0"
 kubectl = "1.37.1"
 neovim = "0.12.6"
-node = "26.11.1"
+node = "26.12.0"
 opentofu = "1.13.1"
-rust = "1.99.0"
+rust = "1.99.1"
 
 # Orca desktop app (https://github.com/stablyai/orca).
 # Linux uses the AppImage; macOS uses the .app bundle from the zip.
 [tools."github:stablyai/orca"]
-version = "1.4.224"
+version = "1.4.229"
 
 [tools."github:stablyai/orca".platforms]
 linux-x64 = { asset_pattern = "orca-linux.AppImage", bin = "orca" }
@@ -55,7 +55,7 @@ linux-arm64 = { url = "https://storage.googleapis.com/antigravity-public/antigra
 # from WSL. It relays the Windows Bitwarden SSH agent into WSL (see
 # ~/.config/systemd/user/bitwarden-ssh-agent-relay.socket).
 [tools."github:albertony/npiperelay"]
-version = "1.12.1"
+version = "1.12.2"
 os = ["linux"]
 
 [tools."github:albertony/npiperelay".platforms]
