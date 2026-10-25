@@ -1,32 +1,32 @@
 # Versions are pinned so Renovate can open update PRs.
 [tools]
-"aqua:anomalyco/opencode" = "1.19.3"
-"aqua:anthropics/claude-code" = "2.1.302"
+"aqua:anomalyco/opencode" = "1.19.4"
+"aqua:anthropics/claude-code" = "2.1.310"
 "aqua:commercialhaskell/stack" = "3.11.1"
 "aqua:d2lang/d2" = "0.9.0"
-"aqua:google-antigravity/antigravity-cli" = "1.4.2"
+"aqua:google-antigravity/antigravity-cli" = "1.4.7"
 "aqua:haskell/ghcup-hs" = "0.2.6.2"
 "aqua:bitwarden/clients" = "2026.9.0"
-"aqua:modem-dev/hunk" = "0.23.0"
+"aqua:modem-dev/hunk" = "0.24.1"
 "aqua:rossmacarthur/sheldon" = "0.8.5"
-"aqua:tailscale/tailscale" = "1.104.1"
-apm = "0.33.0"
+"aqua:tailscale/tailscale" = "1.104.2"
+apm = "0.35.0"
 fzf = "0.74.5"
-github-cli = "2.102.0"
-go = "1.27.2"
+github-cli = "2.103.2"
+go = "1.27.3"
 jq = "1.8.2"
 kind = "0.33.0"
 krew = "0.5.0"
 kubectl = "1.37.1"
 neovim = "0.12.6"
-node = "26.12.0"
-opentofu = "1.13.1"
+node = "26.12.1"
+opentofu = "1.13.2"
 rust = "1.99.1"
 
 # Orca desktop app (https://github.com/stablyai/orca).
 # Linux uses the AppImage; macOS uses the .app bundle from the zip.
 [tools."github:stablyai/orca"]
-version = "1.4.229"
+version = "1.4.240"
 
 [tools."github:stablyai/orca".platforms]
 linux-x64 = { asset_pattern = "orca-linux.AppImage", bin = "orca" }
