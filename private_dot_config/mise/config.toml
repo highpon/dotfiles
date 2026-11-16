@@ -1,32 +1,32 @@
 # Versions are pinned so Renovate can open update PRs.
 [tools]
-"aqua:anomalyco/opencode" = "2.2.6"
-"aqua:anthropics/claude-code" = "2.1.319"
+"aqua:anomalyco/opencode" = "2.3.0"
+"aqua:anthropics/claude-code" = "2.1.325"
 "aqua:commercialhaskell/stack" = "3.11.1"
 "aqua:d2lang/d2" = "0.9.0"
-"aqua:google-antigravity/antigravity-cli" = "1.5.3"
+"aqua:google-antigravity/antigravity-cli" = "1.5.9"
 "aqua:haskell/ghcup-hs" = "0.2.6.2"
 "aqua:bitwarden/clients" = "2026.9.0"
-"aqua:modem-dev/hunk" = "0.24.1"
+"aqua:modem-dev/hunk" = "0.25.0"
 "aqua:rossmacarthur/sheldon" = "0.8.5"
-"aqua:tailscale/tailscale" = "1.104.5"
-apm = "0.35.0"
+"aqua:tailscale/tailscale" = "1.104.7"
+apm = "0.35.1"
 fzf = "0.75.0"
-github-cli = "2.103.3"
-go = "1.27.3"
+github-cli = "2.104.0"
+go = "1.27.4"
 jq = "1.8.2"
 kind = "0.33.0"
 krew = "0.5.0"
 kubectl = "1.37.2"
 neovim = "0.12.6"
-node = "26.13.0"
+node = "26.13.1"
 opentofu = "1.13.9"
-rust = "1.99.1"
+rust = "1.100.0"
 
 # Orca desktop app (https://github.com/stablyai/orca).
 # Linux uses the AppImage; macOS uses the .app bundle from the zip.
 [tools."github:stablyai/orca"]
-version = "1.4.253"
+version = "1.4.259"
 
 [tools."github:stablyai/orca".platforms]
 linux-x64 = { asset_pattern = "orca-linux.AppImage", bin = "orca" }
@@ -55,7 +55,7 @@ linux-arm64 = { url = "https://storage.googleapis.com/antigravity-public/antigra
 # from WSL. It relays the Windows Bitwarden SSH agent into WSL (see
 # ~/.config/systemd/user/bitwarden-ssh-agent-relay.socket).
 [tools."github:albertony/npiperelay"]
-version = "1.12.2"
+version = "1.12.3"
 os = ["linux"]
 
 [tools."github:albertony/npiperelay".platforms]
