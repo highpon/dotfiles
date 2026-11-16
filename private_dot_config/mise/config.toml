@@ -42,7 +42,7 @@ macos-arm64 = { asset_pattern = "Orca-{{ version }}-arm64-mac.zip", bin_path = "
 # shadow anything. The app is started from its desktop entry.
 # renovate: datasource=custom.antigravity depName=antigravity
 [tools."http:antigravity"]
-version = "2.29.0-5723181030440960"
+version = "2.32.1-6001966350991360"
 os = ["linux"]
 strip_components = 1
 bin_path = "bin"
