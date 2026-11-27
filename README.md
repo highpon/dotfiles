@@ -112,6 +112,13 @@ major updates get their own PR. Run `chezmoi update` to pull and install them.
     `apm install -g <package>` in your terminal, sync changes back to `dot_apm/`
     (or re-run `apm lock`), and run `chezmoi apply`. To refresh pinned versions,
     run `apm update -g` and update `dot_apm/apm.lock.yaml`.
+- **Open Slide** (`@open-slide/cli`) and **pnpm** are installed by mise.
+  Run `open-slide init <dir>` to scaffold a slide workspace. Open Slide manages
+  its own agent skills inside each workspace (`.agents/skills/` and
+  `.claude/skills/`) rather than globally via APM, and updates them with
+  `pnpm sync:skills`. Inside a workspace, run `pnpm dev` / `pnpm build` /
+  `pnpm sync:skills` rather than bare `open-slide <cmd>`, since the global
+  `open-slide` binary is the `@open-slide/cli` scaffolder.
 
 ### 6. Ghostty and fonts
 
