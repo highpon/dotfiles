@@ -10,6 +10,7 @@
 "aqua:modem-dev/hunk" = "0.25.0"
 "aqua:rossmacarthur/sheldon" = "0.8.5"
 "aqua:tailscale/tailscale" = "1.104.7"
+"npm:@open-slide/cli" = "2.0.0"
 apm = "0.38.0"
 fzf = "0.75.0"
 github-cli = "2.105.0"
@@ -21,6 +22,7 @@ kubectl = "1.37.2"
 neovim = "0.12.6"
 node = "26.13.1"
 opentofu = "1.13.9"
+pnpm = "12.23.0"
 rust = "1.100.0"
 
 # Orca desktop app (https://github.com/stablyai/orca).
